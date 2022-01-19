@@ -1,0 +1,5 @@
+name: wPrefixes
+version: '${project.version}'
+main: xyz.wiseared.wprefixes.wPrefixes
+authors: [ Wiseared ]
+description: wPrefixes

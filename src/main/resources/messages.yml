@@ -1,0 +1,5 @@
+MESSAGES:
+  NO-PERMISSION: "&cNo Permission"
+  PREFIX-CHANGED: "%prefix% &7You have changed your prefix to %new%"
+  COOLDOWN: "%prefix% &cYou are still on cooldown for &c&l%time%"
+  RESET: "%prefix% &7You have reset the cooldown of &c%player%"

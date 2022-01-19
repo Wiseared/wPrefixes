@@ -1,0 +1,11 @@
+SETTINGS:
+  PREFIX: "&4&lPREFIX &7»"
+  CUSTOM-CHAT: true
+  PREFIX-COOLDOWN: 86400000 # Milliseconds, how long should the cooldown be of a user being able to change his cooldown.
+  DATA-TYPE: "flatfile" # FlatFile or MongoDB
+  MONGO:
+    URL: ""
+    DATABASE: ""
+  CHAT-FORMAT:
+    GLOBAL: "&e%player%&f: %message%"
+    GLOBAL-PREFIX: "%prefix% &e%player%&f: %message%"
