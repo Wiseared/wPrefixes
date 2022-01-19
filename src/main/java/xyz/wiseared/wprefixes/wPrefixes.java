@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import xyz.wiseared.wprefixes.api.PrefixAPI;
 import xyz.wiseared.wprefixes.command.CommandHandler;
 import xyz.wiseared.wprefixes.database.MongoDB;
+import xyz.wiseared.wprefixes.hooks.PlaceholderAPI;
 import xyz.wiseared.wprefixes.profile.managers.ProfileManager;
 import xyz.wiseared.wprefixes.utils.CC;
 import xyz.wiseared.wprefixes.utils.Configuration;
@@ -18,6 +20,7 @@ import java.io.IOException;
 public class wPrefixes extends JavaPlugin {
 
     private static wPrefixes instance;
+    private static PrefixAPI api;
     private String prefix;
     private MongoDB mongoDB;
     private CommandHandler commandHandler;
@@ -26,6 +29,10 @@ public class wPrefixes extends JavaPlugin {
 
     public static wPrefixes getInstance() {
         return instance;
+    }
+
+    public static PrefixAPI getAPI() {
+        return api;
     }
 
     @Override
@@ -67,5 +74,10 @@ public class wPrefixes extends JavaPlugin {
             mongoDB = new MongoDB(this);
         }
         profileManager = new ProfileManager();
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            Bukkit.getConsoleSender().sendMessage(" ");
+            new PlaceholderAPI().register();
+            Bukkit.getConsoleSender().sendMessage(CC.translate("&7[&2Hooks&7] &fHooked into &9PlaceholderAPI"));
+        }
     }
 }

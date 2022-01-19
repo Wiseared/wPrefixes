@@ -1,5 +1,6 @@
 package xyz.wiseared.wprefixes.profile.listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,10 +18,18 @@ public class ChatListener implements Listener {
         Player player = event.getPlayer();
         Profile profile = wPrefixes.getInstance().getProfileManager().getProfile(player.getUniqueId());
         event.setCancelled(true);
-        if (profile.getPrefix().equalsIgnoreCase("none")) {
-            Message.sendToAll(Configuration.GLOBAL_CHAT.replace("%message%", event.getMessage()).replace("%player%", player.getName()));
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            if (profile.getPrefix().equalsIgnoreCase("none")) {
+                Message.sendToAllPapi(Configuration.GLOBAL_CHAT.replace("%message%", event.getMessage()).replace("%player%", player.getName()));
+            } else {
+                Message.sendToAllPapi(Configuration.GLOBAL_CHAT_PREFIX.replace("%message%", event.getMessage()).replace("%prefix%", profile.getPrefix()).replace("%player%", player.getName()));
+            }
         } else {
-            Message.sendToAll(Configuration.GLOBAL_CHAT_PREFIX.replace("%message%", event.getMessage()).replace("%prefix%", profile.getPrefix()).replace("%player%", player.getName()));
+            if (profile.getPrefix().equalsIgnoreCase("none")) {
+                Message.sendToAll(Configuration.GLOBAL_CHAT.replace("%message%", event.getMessage()).replace("%player%", player.getName()));
+            } else {
+                Message.sendToAll(Configuration.GLOBAL_CHAT_PREFIX.replace("%message%", event.getMessage()).replace("%prefix%", profile.getPrefix()).replace("%player%", player.getName()));
+            }
         }
     }
 }
